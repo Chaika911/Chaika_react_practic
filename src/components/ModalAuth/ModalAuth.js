@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { logIn } from '../../redux/actinns'
+import { useDispatch } from "react-redux";
 
 const ModalAuth = ( {onClose}) => {
+
+    const dispatch = useDispatch();
+
+
     const [loginData, setLoginData] = useState({
         login: '',
         password: ''
@@ -19,7 +25,8 @@ const ModalAuth = ( {onClose}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        localStorage.setItem('loginData', JSON.stringify(loginData))
+        dispatch(logIn(loginData.login));
+        onClose();
     }
 
 
